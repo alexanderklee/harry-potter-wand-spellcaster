@@ -98,28 +98,28 @@ Universal Orlando's interactive wands have a **retroreflective bead** at the tip
 │                        DATA FLOW                                     │
 ├──────────────────────────────────────────────────────────────────────┤
 │                                                                      │
-│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐            │
-│  │ Camera  │───▶│ Wand    │───▶│ Gesture │───▶│ Spell   │            │
-│  │ Capture │    │ Tracker │    │ Buffer  │    │ Recog.  │            │
-│  └─────────┘    └─────────┘    └─────────┘    └────┬────┘            │
+│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐           │
+│  │ Camera  │───▶│ Wand    │───▶│ Gesture │───▶│ Spell   │           │
+│  │ Capture │    │ Tracker │    │ Buffer  │    │ Recog.  │           │
+│  └─────────┘    └─────────┘    └─────────┘    └────┬────┘           │
 │       │              │              │              │                 │
 │       │              │              │              │                 │
-│  30 FPS         Blob detect    Accumulate    ML classify             │
-│  BGR frames     & centroid     points        SVM model               │
+│  30 FPS         Blob detect    Accumulate    ML classify            │
+│  BGR frames     & centroid     points        SVM model              │
 │                                                   │                  │
 │                                                   ▼                  │
-│                                            ┌─────────────┐           │
-│                                            │  Display    │           │
-│                                            │  Manager    │           │
-│                                            └─────────────┘           │
+│                                            ┌─────────────┐          │
+│                                            │  Display    │          │
+│                                            │  Manager    │          │
+│                                            └─────────────┘          │
 │                                                   │                  │
-│                              ┌────────────────────┼───────────┐      │
-│                              │                    │           │      │
-│                              ▼                    ▼           ▼      │
-│                         ┌────────┐          ┌────────┐  ┌────────┐   │
-│                         │ HDMI   │          │  OLED  │  │Headless│   │
-│                         │ Screen │          │ Screen │  │  Logs  │   │
-│                         └────────┘          └────────┘  └────────┘   │
+│                              ┌────────────────────┼───────────┐     │
+│                              │                    │           │     │
+│                              ▼                    ▼           ▼     │
+│                         ┌────────┐          ┌────────┐  ┌────────┐  │
+│                         │ HDMI   │          │  OLED  │  │Headless│  │
+│                         │ Screen │          │ Screen │  │  Logs  │  │
+│                         └────────┘          └────────┘  └────────┘  │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
@@ -180,7 +180,7 @@ The IR LEDs illuminate the wand tip. We'll wire 6 LEDs in parallel with current-
                                          │   │                 │
                                          │   └──[100Ω]──(LED)──┤
                                          │                     │
-    Pin 6 (GND) ●───────────────────────▶│        GND          │
+    Pin 6 (GND) ●────────────────────────▶│        GND          │
                                          │                     │
                                          └─────────────────────┘
 
@@ -249,8 +249,8 @@ The IR LEDs illuminate the wand tip. We'll wire 6 LEDs in parallel with current-
     ├──────────────────────────────────────────┤
     │                                          │
     │     3V3  (1) (2)  5V                     │
-    │    SDA   (3) (4)  5V    ◄── IR LEDs      │
-    │    SCL   (5) (6)  GND   ◄── IR LEDs      │
+    │    SDA   (3) (4)  5V    ◄── IR LEDs     │
+    │    SCL   (5) (6)  GND   ◄── IR LEDs     │
     │    GP4   (7) (8)  TXD                    │
     │    GND   (9) (10) RXD                    │
     │   GP17  (11) (12) GP18                   │
@@ -479,6 +479,74 @@ Draw these patterns with your wand:
     ●                  ╲
                         ●
 ```
+
+---
+
+## Adding Custom Spells
+
+Want more spells? Use the Spell Manager tool!
+
+### Quick Add (From Suggested Spells)
+
+```bash
+# See all available spells and templates
+python spell_manager.py list
+
+# Add a suggested spell (20+ available!)
+python spell_manager.py add stupefy
+python spell_manager.py add expelliarmus
+python spell_manager.py add protego
+
+# Retrain the model with new spells
+python spell_manager.py train
+```
+
+### Create Your Own Spell
+
+```bash
+# Interactive spell creation
+python spell_manager.py add my_custom_spell
+
+# You'll be prompted for:
+#   - Display name
+#   - Incantation (pronunciation)
+#   - Description
+#   - Color (hex)
+#   - Gesture template (choose from 25+ patterns)
+```
+
+### Available Gesture Templates
+
+| Category | Templates |
+|----------|-----------|
+| **Circles** | `circle_cw`, `circle_ccw`, `spiral_in`, `spiral_out` |
+| **Flicks** | `flick_up`, `flick_down`, `flick_left`, `flick_right` |
+| **Diagonals** | `diagonal_up_right`, `diagonal_up_left`, `diagonal_down_right`, `diagonal_down_left` |
+| **Waves** | `wave_horizontal`, `wave_vertical`, `s_curve`, `zigzag` |
+| **Shapes** | `triangle`, `square`, `star`, `heart`, `lightning_bolt` |
+| **Complex** | `swish_flick`, `figure_eight`, `infinity`, `checkmark`, `x_mark` |
+
+### Suggested Spells Ready to Add
+
+| Spell | Gesture | Description |
+|-------|---------|-------------|
+| Stupefy | lightning_bolt | Stunning Spell |
+| Expelliarmus | diagonal_up_right | Disarming Charm |
+| Protego | circle_ccw | Shield Charm |
+| Expecto Patronum | spiral_out | Patronus Charm |
+| Accio | spiral_in | Summoning Charm |
+| Obliviate | wave_horizontal | Memory Charm |
+| Petrificus Totalus | flick_down | Full Body-Bind |
+| Riddikulus | zigzag | Boggart Banishing |
+| Reparo | circle_cw | Mending Charm |
+| Finite Incantatem | x_mark | Counter-spell |
+| ...and 10 more! | | |
+
+### Tips for Good Recognition
+
+1. **Choose distinct gestures** - Don't use similar patterns for different spells
+2. **Test after training** - Run `python src/main.py --debug` to verify
+3. **Adjust confidence** - Lower `min_confidence` in config if spells aren't recognized
 
 ---
 
