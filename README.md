@@ -180,7 +180,7 @@ The IR LEDs illuminate the wand tip. We'll wire 6 LEDs in parallel with current-
                                          │   │                 │
                                          │   └──[100Ω]──(LED)──┤
                                          │                     │
-    Pin 6 (GND) ●────────────────────────▶│        GND         │
+    Pin 6 (GND) ●───────────────────────▶│        GND         │
                                          │                     │
                                          └─────────────────────┘
 
