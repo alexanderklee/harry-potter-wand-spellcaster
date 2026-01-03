@@ -1,0 +1,42 @@
+# Wand Spellcaster - Python Dependencies
+# =======================================
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+numpy>=1.20.0
+opencv-python>=4.5.0
+scikit-learn>=1.0.0
+PyYAML>=6.0
+
+# Display options (install based on your setup)
+# For desktop/HDMI display:
+pygame>=2.1.0
+
+# For SSD1306 OLED display:
+# luma.oled>=3.8.0
+# Pillow>=9.0.0
+
+# Raspberry Pi Camera (optional, will fall back to OpenCV if not available)
+# Note: On Raspberry Pi OS, install via apt instead:
+#   sudo apt install python3-picamera2
+# picamera2>=0.3.0
+
+# =============================================================================
+# PHASE 2 PLACEHOLDER: Voice Dependencies
+# =============================================================================
+# pyttsx3>=2.90  # Cross-platform TTS
+# espeak-ng      # Install via apt: sudo apt install espeak-ng
+# =============================================================================
+
+# =============================================================================
+# PHASE 2 PLACEHOLDER: Multiplayer Dependencies
+# =============================================================================
+# websockets>=10.0  # For peer-to-peer communication
+# zeroconf>=0.39.0  # For local network discovery
+# =============================================================================
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# pytest-cov>=3.0.0
+# black>=22.0.0
+# flake8>=4.0.0

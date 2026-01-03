@@ -1,0 +1,115 @@
+# Wand Spellcaster - Git Ignore File
+
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# =============================================================================
+# IDE / Editor
+# =============================================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# =============================================================================
+# OS Generated
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# Project Specific
+# =============================================================================
+
+# Trained models (large binary files - users should generate their own)
+models/*.pkl
+models/*.joblib
+models/*.h5
+!models/.gitkeep
+
+# User configuration (may contain personal settings)
+config/settings.yaml
+!config/settings.yaml.example
+
+# Test outputs
+tests/output/
+*.test.jpg
+*.test.png
+
+# Calibration data
+calibration_*.json
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# =============================================================================
+# Raspberry Pi Specific
+# =============================================================================
+# Camera test images
+test*.jpg
+test*.png
+
+# =============================================================================
+# Jupyter Notebooks (if used for development)
+# =============================================================================
+.ipynb_checkpoints/
+*.ipynb
+
+# =============================================================================
+# Coverage and Testing
+# =============================================================================
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/

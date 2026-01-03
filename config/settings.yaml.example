@@ -1,0 +1,103 @@
+# Wand Spellcaster Configuration
+# ================================
+# Copy this file to settings.yaml and adjust for your setup
+
+# Camera Settings
+# ---------------
+# These settings control the IR camera and wand detection
+camera:
+  # Camera device index (usually 0 for built-in/first camera)
+  id: 0
+  
+  # Capture resolution [width, height]
+  # Lower = faster processing, Higher = better detection at distance
+  resolution: [640, 480]
+  
+  # IR brightness threshold (0-255)
+  # Higher = only detect very bright IR reflections (less false positives)
+  # Lower = detect dimmer reflections (more sensitive but more noise)
+  # Run with --calibrate to find the best value for your setup
+  ir_threshold: 200
+  
+  # Minimum blob area in pixels to consider as wand tip
+  # Increase if getting false detections from small reflections
+  min_blob_area: 50
+  
+  # Maximum blob area in pixels
+  # Decrease if large IR sources are being detected
+  max_blob_area: 5000
+
+# Gesture Recognition Settings
+# ----------------------------
+gesture:
+  # Minimum number of tracking points to attempt recognition
+  # Lower = faster but less accurate, Higher = more reliable gestures
+  min_points: 15
+  
+  # Number of frames to wait after losing wand before completing gesture
+  # Higher = allows brief occlusions, Lower = faster response
+  timeout_frames: 15
+  
+  # Minimum confidence score to accept a spell (0.0 - 1.0)
+  # Higher = fewer false positives but may miss valid spells
+  min_confidence: 0.7
+  
+  # Path to the trained spell classifier model
+  model_path: "models/spell_classifier.pkl"
+
+# Display Settings
+# ----------------
+display:
+  # Display type: auto, pygame, oled, headless
+  # auto = automatically detect available display
+  # pygame = full graphical display (requires X11/Wayland)
+  # oled = SSD1306 OLED via I2C
+  # headless = no display, logging only
+  type: auto
+  
+  # Resolution for pygame display [width, height]
+  resolution: [800, 480]
+  
+  # Color theme: default, gryffindor, slytherin, ravenclaw, hufflepuff
+  theme: default
+  
+  # Run in fullscreen mode (pygame only)
+  fullscreen: false
+
+# =============================================================================
+# PHASE 2 PLACEHOLDER: Voice Settings
+# =============================================================================
+# voice:
+#   # TTS engine: espeak, pico, festival
+#   engine: espeak
+#   
+#   # Voice name/language
+#   voice: en
+#   
+#   # Speech rate (words per minute)
+#   rate: 150
+# =============================================================================
+
+# =============================================================================
+# PHASE 2 PLACEHOLDER: Multiplayer Settings
+# =============================================================================
+# multiplayer:
+#   # Port for peer-to-peer connection
+#   port: 5000
+#   
+#   # Timeout waiting for opponent (seconds)
+#   sync_timeout: 5.0
+#   
+#   # Countdown before duel starts (seconds)
+#   duel_countdown: 3
+# =============================================================================
+
+# Custom Spell Definitions (optional)
+# -----------------------------------
+# You can override the default spell definitions here
+# spells:
+#   custom_spell:
+#     name: "Custom Spell"
+#     incantation: "CUS-tom SPELL"
+#     description: "A custom spell you defined"
+#     color: "#FF00FF"
