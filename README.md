@@ -98,28 +98,28 @@ Universal Orlando's interactive wands have a **retroreflective bead** at the tip
 │                        DATA FLOW                                     │
 ├──────────────────────────────────────────────────────────────────────┤
 │                                                                      │
-│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐           │
-│  │ Camera  │───▶│ Wand    │───▶│ Gesture │───▶│ Spell   │           │
-│  │ Capture │    │ Tracker │    │ Buffer  │    │ Recog.  │           │
-│  └─────────┘    └─────────┘    └─────────┘    └────┬────┘           │
+│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐            │
+│  │ Camera  │───▶│ Wand    │───▶│ Gesture │───▶│ Spell   │            │
+│  │ Capture │    │ Tracker │    │ Buffer  │    │ Recog.  │            │
+│  └─────────┘    └─────────┘    └─────────┘    └────┬────┘            │
 │       │              │              │              │                 │
 │       │              │              │              │                 │
-│  30 FPS         Blob detect    Accumulate    ML classify            │
-│  BGR frames     & centroid     points        SVM model              │
+│  30 FPS         Blob detect    Accumulate    ML classify             │
+│  BGR frames     & centroid     points        SVM model               │
 │                                                   │                  │
 │                                                   ▼                  │
-│                                            ┌─────────────┐          │
-│                                            │  Display    │          │
-│                                            │  Manager    │          │
-│                                            └─────────────┘          │
+│                                            ┌─────────────┐           │
+│                                            │  Display    │           │
+│                                            │  Manager    │           │
+│                                            └─────────────┘           │
 │                                                   │                  │
-│                              ┌────────────────────┼───────────┐     │
-│                              │                    │           │     │
-│                              ▼                    ▼           ▼     │
-│                         ┌────────┐          ┌────────┐  ┌────────┐  │
-│                         │ HDMI   │          │  OLED  │  │Headless│  │
-│                         │ Screen │          │ Screen │  │  Logs  │  │
-│                         └────────┘          └────────┘  └────────┘  │
+│                              ┌────────────────────┼───────────┐      │
+│                              │                    │           │      │
+│                              ▼                    ▼           ▼      │
+│                         ┌────────┐          ┌────────┐  ┌────────┐   │
+│                         │ HDMI   │          │  OLED  │  │Headless│   │
+│                         │ Screen │          │ Screen │  │  Logs  │   │
+│                         └────────┘          └────────┘  └────────┘   │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
@@ -180,7 +180,7 @@ The IR LEDs illuminate the wand tip. We'll wire 6 LEDs in parallel with current-
                                          │   │                 │
                                          │   └──[100Ω]──(LED)──┤
                                          │                     │
-    Pin 6 (GND) ●────────────────────────▶│        GND          │
+    Pin 6 (GND) ●────────────────────────▶│        GND         │
                                          │                     │
                                          └─────────────────────┘
 
@@ -249,8 +249,8 @@ The IR LEDs illuminate the wand tip. We'll wire 6 LEDs in parallel with current-
     ├──────────────────────────────────────────┤
     │                                          │
     │     3V3  (1) (2)  5V                     │
-    │    SDA   (3) (4)  5V    ◄── IR LEDs     │
-    │    SCL   (5) (6)  GND   ◄── IR LEDs     │
+    │    SDA   (3) (4)  5V    ◄── IR LEDs      │
+    │    SCL   (5) (6)  GND   ◄── IR LEDs      │
     │    GP4   (7) (8)  TXD                    │
     │    GND   (9) (10) RXD                    │
     │   GP17  (11) (12) GP18                   │
